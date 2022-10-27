@@ -1,12 +1,9 @@
 package com.sistema.inventario.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,7 +16,9 @@ public class Ambiente {
 	private Long id;
 
 	private String ambiente;
-
+	
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -35,6 +34,8 @@ public class Ambiente {
 	public void setAmbiente(String ambiente) {
 		this.ambiente = ambiente;
 	}
+
+
 
 	
 }
