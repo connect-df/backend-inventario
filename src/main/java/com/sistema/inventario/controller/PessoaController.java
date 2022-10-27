@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,28 +24,48 @@ public class PessoaController {
 	@Autowired
 	private PessoaService pessoaService;
 
+<<<<<<< HEAD
+=======
+	@CrossOrigin(origins = "*")
+>>>>>>> origin/develop
 	@GetMapping
 	public List<Pessoa> obterTodos() {
 		return pessoaService.obterTodos();
 	}
 
+<<<<<<< HEAD
+=======
+	@CrossOrigin(origins = "*")
+>>>>>>> origin/develop
 	@GetMapping("/{id}")
 	public Optional<Pessoa> obterporId(@PathVariable Long id) {
 		return pessoaService.obterPorId(id);
 	}
 
+<<<<<<< HEAD
+=======
+	@CrossOrigin(origins = "*")
+>>>>>>> origin/develop
 	@PostMapping
 	public Pessoa adicionar(@RequestBody Pessoa pessoa) {
 		return pessoaService.adicionar(pessoa);
 
 	}
 
+<<<<<<< HEAD
+=======
+	@CrossOrigin(origins = "*")
+>>>>>>> origin/develop
 	@DeleteMapping("/{id}")
 	public String deletar(@PathVariable Long id) {
 		pessoaService.deletar(id);
 		return "Produto com id: " + id + " Deletado com sucesso!";
 	}
 
+<<<<<<< HEAD
+=======
+	@CrossOrigin(origins = "*")
+>>>>>>> origin/develop
 	@PutMapping("/{id}")
 	public Pessoa atualizar(@PathVariable Long id, @RequestBody Pessoa pessoa) {
 		return pessoaService.atualizar(id, pessoa);

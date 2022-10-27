@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sistema.inventario.model.Produto;
-import com.sistema.inventario.model.Tipo;
 import com.sistema.inventario.repository.ProdutoRepository;
 
 @Service
@@ -28,12 +27,6 @@ public class ProdutoService {
     }
     
     
-//    public List<Produto> obterPorTipo(Tipo tipo) {
-//
-//        return produtoRepository.findByTipoContaining();
-//
-//    }
-
     public Produto adicionar(Produto produto) {
 
     	produto.setId(null);
@@ -51,4 +44,11 @@ public class ProdutoService {
         return produtoRepository.save(produto);
 
     }
+    
+    public List<Produto> obterPorCodigo(String codigo) {
+
+        return produtoRepository.findByCodigo(codigo);
+
+    }
+    
 }
