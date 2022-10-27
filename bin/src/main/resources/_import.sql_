@@ -1,0 +1,19 @@
+select * from tb_produto;
+select * from tb_ambiente;
+select * from tb_pessoa;
+select * from tb_tipo;
+
+INSERT INTO tb_tipo (categoria) VALUES ('Eletronico');
+INSERT INTO tb_tipo (categoria) VALUES ('Moveis');
+
+
+INSERT INTO tb_pessoa (nome, cargo, email, telefone ) VALUES ('Marcelo', 'desenvolvedor', 'marcelo@gmail.com', '65554328');
+INSERT INTO tb_pessoa (nome, cargo, email, telefone ) VALUES ('Bruno', 'DBA', 'Brunoo@gmail.com', '161651');
+
+
+INSERT INTO tb_ambiente (id, ambiente) VALUES (1,'RH');
+INSERT INTO tb_ambiente (id, ambiente) VALUES (2,'Fabrica');
+INSERT INTO tb_ambiente (id, ambiente) VALUES (3,'Recepcao');
+
+INSERT INTO tb_produto ( codigo, descricao, situacao, patrimonio, dt_cadastro ,valor, tipo_id, pessoa_id, ambiente_id) VALUES ('71234' ,'i7 16gb ssd 236gb', 'Novo', 'Notebook','2021-07-07', 2500.23, 1, 1, 1);
+INSERT INTO tb_produto (codigo, descricao, situacao, patrimonio,dt_cadastro, valor, tipo_id, pessoa_id, ambiente_id) VALUES ('4321', 'mesa de madeira', 'Novo', 'Mesa','2022-07-02',300.77, 2, 2, 2);

@@ -33,7 +33,7 @@ public class LocalController {
 	}
 
 	@GetMapping("/{id}")
-	public Optional<Ambiente> obterporId(@PathVariable Long id) {
+public Optional<Ambiente> obterporId(@PathVariable Long id) {
 		return localService.obterPorId(id);
 	}
 
