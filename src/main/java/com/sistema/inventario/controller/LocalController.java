@@ -28,11 +28,15 @@ public class LocalController {
 //	@Autowired
 //	private LocalRepository LocalRepository;
 
+<<<<<<< HEAD
 	@CrossOrigin(origins = "*")
+=======
+>>>>>>> 327efd27d9b5580642621972c175ca36f459efdf
 	@GetMapping
 	public List<Ambiente> obterTodos() {
 		return localService.obterTodos();
 	}
+<<<<<<< HEAD
 
 	@CrossOrigin(origins = "*")
 	@GetMapping("/{id}")
@@ -60,6 +64,26 @@ public class LocalController {
 	}
 
 	@CrossOrigin(origins = "*")
+=======
+
+	@GetMapping("/{id}")
+	public Optional<Ambiente> obterporId(@PathVariable Long id) {
+		return localService.obterPorId(id);
+	}
+
+	@PostMapping
+	public Ambiente adicionar(@RequestBody Ambiente local) {
+		return localService.adicionar(local);
+
+	}
+
+	@DeleteMapping("/{id}")
+	public String deletar(@PathVariable Long id) {
+		localService.deletar(id);
+		return "Local com id: " + id + " Deletado com sucesso!";
+	}
+
+>>>>>>> 327efd27d9b5580642621972c175ca36f459efdf
 	@PutMapping("/{id}")
 	public Ambiente atualizar(@PathVariable Long id, @RequestBody Ambiente local) {
 		return localService.atualizar(id, local);

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sistema.inventario.model.Produto;
-//import com.sistema.inventario.repository.ProdutoRepository;
+
 import com.sistema.inventario.service.ProdutoService;
 
 @RestController
@@ -24,15 +24,20 @@ public class ProdutoController {
 
 	@Autowired
 	private ProdutoService produtoService;
+<<<<<<< HEAD
 
 //	@Autowired
 //	private ProdutoRepository produtoRepository;
 //	
+=======
+	
+>>>>>>> 327efd27d9b5580642621972c175ca36f459efdf
 	@CrossOrigin(origins = "*")
 	@GetMapping
 	public List<Produto> obterTodos() {
 		return produtoService.obterTodos();
 	}
+<<<<<<< HEAD
 
 	@CrossOrigin(origins = "*")
 	@GetMapping("/{id}")
@@ -44,6 +49,14 @@ public class ProdutoController {
 //	    public List<Produto> obterPorPessoa(String nome) {
 //	    	return produtoRepository.findByTipoContaining(tipo);
 //	    }
+=======
+
+	@CrossOrigin(origins = "*")
+	@GetMapping("/{id}")
+	public Optional<Produto> obterporId(@PathVariable Long id) {
+		return produtoService.obterPorId(id);
+	}
+>>>>>>> 327efd27d9b5580642621972c175ca36f459efdf
 
 	@CrossOrigin(origins = "*")
 	@PostMapping
@@ -58,6 +71,7 @@ public class ProdutoController {
 		produtoService.deletar(id);
 		return "Produto com id: " + id + " Deletado com sucesso!";
 	}
+<<<<<<< HEAD
 
 	@CrossOrigin(origins = "*")
 	@PutMapping("/{id}")
@@ -65,4 +79,22 @@ public class ProdutoController {
 		return produtoService.atualizar(id, produto);
 
 	}
+=======
+
+	@CrossOrigin(origins = "*")
+	@PutMapping("/{id}")
+	public Produto atualizar(@PathVariable Long id, @RequestBody Produto produto) {
+		return produtoService.atualizar(id, produto);
+
+	}
+
+
+	@CrossOrigin(origins = "*")
+	@GetMapping("/codigo/{codigo}")
+	public List<Produto> obterPorCodigo(@PathVariable String codigo) {
+		return produtoService.obterPorCodigo(codigo);
+	}
+   
+
+>>>>>>> 327efd27d9b5580642621972c175ca36f459efdf
 }
