@@ -45,15 +45,15 @@ public class Produto {
 	private Double valor;
 	
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
     @JoinColumn(name = "tipo_id", referencedColumnName = "id")
 	private Tipo tipo;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
     @JoinColumn(name = "pessoa_id", referencedColumnName = "id")
 	private Pessoa pessoa;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "ambiente_id", referencedColumnName = "id")
 	private Ambiente ambiente;
 	
