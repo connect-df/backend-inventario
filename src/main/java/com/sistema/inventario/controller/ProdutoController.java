@@ -31,13 +31,13 @@ public class ProdutoController {
 		return produtoService.obterTodos();
 	}
 
-	@CrossOrigin(origins = "*")
+	@CrossOrigin(origins= "*")
 	@GetMapping("/{id}")
 	public Optional<Produto> obterporId(@PathVariable Long id) {
 		return produtoService.obterPorId(id);
 	}
 
-	@CrossOrigin(origins = "*")
+	@CrossOrigin(origins= "*")
 	@PostMapping
 	public Produto adicionar(@RequestBody Produto produto) {
 		return produtoService.adicionar(produto);
