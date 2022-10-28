@@ -17,6 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sistema.inventario.model.Pessoa;
 import com.sistema.inventario.service.PessoaService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping("/api/pessoa")
 public class PessoaController {
@@ -24,18 +28,26 @@ public class PessoaController {
 	@Autowired
 	private PessoaService pessoaService;
 
+	@ApiOperation("Endpoint responsável por buscar todas as pessoas")
 	@CrossOrigin(origins = "*")
 	@GetMapping
 	public List<Pessoa> obterTodos() {
 		return pessoaService.obterTodos();
 	}
 
+	@ApiOperation("Endpoint responsável por buscar uma unica pessoa")
 	@CrossOrigin(origins = "*")
 	@GetMapping("/{id}")
 	public Optional<Pessoa> obterporId(@PathVariable Long id) {
 		return pessoaService.obterPorId(id);
 	}
 
+	@ApiOperation("Endpoint responsável por adicionar uma pessoa")
+	@ApiResponses(value= {
+				@ApiResponse(code=200, message = "Criou uma pessoa"),
+				@ApiResponse(code=500, message = "Foi gerado um erro ao criar a pessoa")
+				
+	})
 	@CrossOrigin(origins = "*")
 	@PostMapping
 	public Pessoa adicionar(@RequestBody Pessoa pessoa) {
@@ -43,13 +55,15 @@ public class PessoaController {
 
 	}
 
+	@ApiOperation("Endpoint responsável por deletar uma pessoa")
 	@CrossOrigin(origins = "*")
 	@DeleteMapping("/{id}")
 	public String deletar(@PathVariable Long id) {
 		pessoaService.deletar(id);
-		return "Produto com id: " + id + " Deletado com sucesso!";
+		return "Pessoa com id: " + id + " Deletado com sucesso!";
 	}
 
+	@ApiOperation("Endpoint responsável por atualizar uma pessoa")
 	@CrossOrigin(origins = "*")
 	@PutMapping("/{id}")
 	public Pessoa atualizar(@PathVariable Long id, @RequestBody Pessoa pessoa) {
