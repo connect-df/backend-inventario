@@ -24,8 +24,6 @@ public class LocalController {
 	@Autowired
 	private LocalService localService;
 
-//	@Autowired
-//	private LocalRepository LocalRepository;
 
 	@GetMapping
 	public List<Ambiente> obterTodos() {

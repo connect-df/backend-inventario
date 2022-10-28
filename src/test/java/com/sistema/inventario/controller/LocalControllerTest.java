@@ -1,5 +1,6 @@
 package com.sistema.inventario.controller;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -44,18 +45,18 @@ public void testObterporId() {
 		
 		List<Ambiente> resultado = localController.obterTodos();
 		
-		if (resultado.isEmpty()) {
-			assertFalse(true);
-			
-		} else {
-			assertFalse(false);
-			}
+//		if (resultado.isEmpty()) {
+//			assertFalse(true);
+//			
+//		} else {
+//			assertFalse(false);
+//			}
 		}
 @Test
 
-     public void testDeletar() {
+    public void testDeletar() {
 	
-	Long id = (long) 5;
+	Long id = (long) 17;
 	
 	localController.deletar(id);
 	
@@ -65,4 +66,32 @@ public void testObterporId() {
 	
 }
 
-	}
+@Test
+    public void testAdicionar() {
+
+	Ambiente ambiente = new Ambiente();
+	
+	ambiente.setAmbiente("Empresa");
+	
+	ambiente = localController.adicionar(ambiente);
+
+	assertEquals(true, ambiente.getId() == 18);
+}
+
+//@Test
+   
+    public void testAtualizar() {
+	
+    Ambiente ambiente = new Ambiente();
+    
+    Long id = (long) 3;
+    
+    ambiente.setAmbiente("Empresa");
+    
+    localController.atualizar(id, ambiente);
+    
+    assertEquals(true, ambiente.getAmbiente() == "Ambiente");
+}
+    
+}
+
