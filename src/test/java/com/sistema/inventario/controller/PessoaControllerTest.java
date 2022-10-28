@@ -15,7 +15,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import com.sistema.inventario.model.Pessoa;
-import com.sistema.inventario.repository.PessoaRepository;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -25,19 +24,19 @@ class PessoaControllerTest {
 	@Autowired
 	private PessoaController pessoaController;
 
-	@Autowired
-	private PessoaRepository pessoaRepository;
-
 	@Test
-	void testObterTodos() {
+	public void testObterTodos() {
 
 		List<Pessoa> resultado = pessoaController.obterTodos();
 
-		if (resultado.isEmpty()) {
-			assertFalse(true);
-		} else {
-			assertFalse(false);
-		}
+		
+		assertFalse(resultado.isEmpty());
+		
+//		if (resultado.isEmpty()) {
+//			assertFalse(true);
+//		} else {
+//			assertFalse(false);
+//		}
 
 	}
 
@@ -66,11 +65,12 @@ class PessoaControllerTest {
 		pessoa.setNome("Teste Classe Pessoa");
 		pessoa.setCargo("Dev Jr. Davi");
 		pessoa.setEmail("davi@dev.com");
-		pessoa.setTelefone("99999");
-		
+		pessoa.setTelefone("9999");
+
 		pessoaController.adicionar(pessoa);
-		
-		
+
+		assertEquals(true, pessoa.getId() == 22L);
+
 	}
 
 	@Test
@@ -78,24 +78,33 @@ class PessoaControllerTest {
 	public void testDeletar() {
 
 		// id do responsavel a ser testado
-		Long id = 13L;
+		Long id = 15L;
 
 		pessoaController.deletar(id);
 
 		// vai no banco de dados e tenta buscar o id que mandamos deletar
-		Optional<Pessoa> optionalPessoa = pessoaRepository.findById(id);
+		Optional<Pessoa> optionalPessoa = pessoaController.obterporId(id);
 
 		// verifica se a pessoa foi realmente deletada(se o id da pessoa ta presente )
 		assertFalse(optionalPessoa.isPresent());
 
 	}
 
-//	@Test
-//	public void testAtualizar() {
-//		
-//		fail("Not yet implemented");
-//		
-//		
-//	}
+	@Test
+	public void testAtualizar() {
+
+		Long id = 14L;
+
+		Pessoa pessoa = new Pessoa();
+
+		pessoa.setNome("");
+		pessoa.setCargo("");
+		pessoa.setEmail("");
+		pessoa.setTelefone("");
+
+		pessoaController.atualizar(id, pessoa);
+
+		assertEquals(true, pessoa.getNome() == "");
+	}
 
 }
