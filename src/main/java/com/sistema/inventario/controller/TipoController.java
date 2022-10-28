@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sistema.inventario.model.Tipo;
-//import com.sistema.inventario.repository.TipoRepository;
+
 import com.sistema.inventario.service.TipoService;
 
 @RestController
@@ -24,45 +24,38 @@ public class TipoController {
 
 	@Autowired
 	private TipoService tipoService;
-	
-//	@Autowired
-//	private TipoRepository TipoRepository;
-	
-	@CrossOrigin(origins ="*")
-	 @GetMapping
-	    public List<Tipo> obterTodos() {
-	        return tipoService.obterTodos();
-	    }
 
-	@CrossOrigin(origins ="*")
-	    @GetMapping("/{id}")
-	    public Optional<Tipo> obterporId(@PathVariable Long id) {
-	        return tipoService.obterPorId(id);
-	    }
-	    
-//	    @GetMapping("/por-tipo")
-//	    public List<Tipo> obterporTipo(String tipo) {
-//	    	return TipoRepository.findByTipoContaining(tipo);
-//	    }
+	@CrossOrigin(origins = "*")
+	@GetMapping
+	public List<Tipo> obterTodos() {
+		return tipoService.obterTodos();
+	}
 
-	@CrossOrigin(origins ="*")
-	    @PostMapping
-	    public Tipo adicionar(@RequestBody Tipo tipo) {
-	        return tipoService.adicionar(tipo);
-	        
-	    }
+	@CrossOrigin(origins = "*")
+	@GetMapping("/{id}")
+	public Optional<Tipo> obterporId(@PathVariable Long id) {
+		return tipoService.obterPorId(id);
+	}
 
-	@CrossOrigin(origins ="*")
-	    @DeleteMapping("/{id}")
-	    public String deletar(@PathVariable Long id) {
+	@CrossOrigin(origins = "*")
+	@PostMapping
+	public Tipo adicionar(@RequestBody Tipo tipo) {
+		return tipoService.adicionar(tipo);
+
+	}
+
+	@CrossOrigin(origins = "*")
+	@DeleteMapping("/{id}")
+	public String deletar(@PathVariable Long id) {
 		tipoService.deletar(id);
-	        return "Tipo com id: " + id + " Deletado com sucesso!";
-	    }
+		return "Tipo com id: " + id + " Deletado com sucesso!";
+	}
 
-	@CrossOrigin(origins ="*")
-	    @PutMapping("/{id}")
-	    public Tipo atualizar(@PathVariable Long id,@RequestBody Tipo tipo) {
-	        return tipoService.atualizar(id, tipo);
+	@CrossOrigin(origins = "*")
+	@PutMapping("/{id}")
+	public Tipo atualizar(@PathVariable Long id, @RequestBody Tipo tipo) {
+		return tipoService.atualizar(id, tipo);
 
-	    }
+	}
+
 }

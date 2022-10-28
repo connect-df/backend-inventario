@@ -13,41 +13,35 @@ import com.sistema.inventario.repository.TipoRepository;
 public class TipoService {
 
 	@Autowired
-    private TipoRepository tipoRepository;
+	private TipoRepository tipoRepository;
 
-    public List<Tipo> obterTodos() {
-        
-        return tipoRepository.findAll();
-    }
+	public List<Tipo> obterTodos() {
 
-    public Optional<Tipo> obterPorId(Long id) {
+		return tipoRepository.findAll();
+	}
 
-        return tipoRepository.findById(id);
+	public Optional<Tipo> obterPorId(Long id) {
 
-    }
-    
-    
-//    public Optional<Tipo> obterPorTipo(String tipo) {
-//
-//        return TipoRepository.findByTipo(tipo);
-//
-//    }
+		return tipoRepository.findById(id);
 
-    public Tipo adicionar(Tipo tipo) {
+	}
 
-    	tipo.setId(null);
-        return tipoRepository.save(tipo);
+	public Tipo adicionar(Tipo tipo) {
 
-    }
+		tipo.setId(null);
+		return tipoRepository.save(tipo);
 
-    public void deletar(Long id) {
-    	tipoRepository.deleteById(id);
-    }
+	}
 
-    public Tipo atualizar(Long id, Tipo tipo) {
-   
-    	tipo.setId(id);
-        return tipoRepository.save(tipo);
+	public void deletar(Long id) {
+		tipoRepository.deleteById(id);
+	}
 
-    }
+	public Tipo atualizar(Long id, Tipo tipo) {
+
+		tipo.setId(id);
+		return tipoRepository.save(tipo);
+
+	}
+
 }
