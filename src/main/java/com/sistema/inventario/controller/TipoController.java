@@ -18,6 +18,10 @@ import com.sistema.inventario.model.Tipo;
 
 import com.sistema.inventario.service.TipoService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping("/api/tipo")
 public class TipoController {
@@ -25,18 +29,25 @@ public class TipoController {
 	@Autowired
 	private TipoService tipoService;
 
+	@ApiOperation("Endpoint responsável por buscar todos os tipos")
 	@CrossOrigin(origins = "*")
 	@GetMapping
 	public List<Tipo> obterTodos() {
 		return tipoService.obterTodos();
 	}
 
+	@ApiOperation("Endpoint responsável por buscar um unico tipo")
 	@CrossOrigin(origins = "*")
 	@GetMapping("/{id}")
 	public Optional<Tipo> obterporId(@PathVariable Long id) {
 		return tipoService.obterPorId(id);
 	}
-
+	@ApiOperation("Endpoint responsável por adicionar um tipo")
+	@ApiResponses(value= {
+				@ApiResponse(code=200, message = "Criou um tipo"),
+				@ApiResponse(code=500, message = "Foi gerado um erro ao criar o tipo")
+				
+	})
 	@CrossOrigin(origins = "*")
 	@PostMapping
 	public Tipo adicionar(@RequestBody Tipo tipo) {
@@ -44,6 +55,7 @@ public class TipoController {
 
 	}
 
+	@ApiOperation("Endpoint responsável por deletar um tipo")
 	@CrossOrigin(origins = "*")
 	@DeleteMapping("/{id}")
 	public String deletar(@PathVariable Long id) {
@@ -51,6 +63,7 @@ public class TipoController {
 		return "Tipo com id: " + id + " Deletado com sucesso!";
 	}
 
+	@ApiOperation("Endpoint responsável por atualizar um tipo")
 	@CrossOrigin(origins = "*")
 	@PutMapping("/{id}")
 	public Tipo atualizar(@PathVariable Long id, @RequestBody Tipo tipo) {

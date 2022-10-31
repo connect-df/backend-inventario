@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sistema.inventario.model.Produto;
-
 import com.sistema.inventario.service.ProdutoService;
+
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping("/api/produto")
@@ -24,19 +27,42 @@ public class ProdutoController {
 
 	@Autowired
 	private ProdutoService produtoService;
-	
+
+	@ApiOperation("Endpoint responsável por buscar todos os produtos")
+	@ApiResponses(value= {
+			@ApiResponse(code=200, message = "Consulta feita com sucesso"),
+			@ApiResponse(code=500, message = "Foi gerado um erro ao consultar os produtos"),
+			@ApiResponse(code=404, message = "URL pesquisada não corresponde "),
+			@ApiResponse(code=403, message = "Você não tem permissão")
+})
+
 	@CrossOrigin(origins = "*")
 	@GetMapping
 	public List<Produto> obterTodos() {
 		return produtoService.obterTodos();
 	}
 
+
+	@ApiOperation("Endpoint responsável por buscar um unico produto")
+	@ApiResponses(value= {
+			@ApiResponse(code=200, message = "Consulta feita com sucesso"),
+			@ApiResponse(code=500, message = "Foi gerado um erro ao consultar o produto"),
+			@ApiResponse(code=404, message = "URL pesquisada não corresponde "),
+			@ApiResponse(code=403, message = "Você não tem permissão")
+})
 	@CrossOrigin(origins = "*")
 	@GetMapping("/{id}")
 	public Optional<Produto> obterporId(@PathVariable Long id) {
 		return produtoService.obterPorId(id);
 	}
 
+	@ApiOperation("Endpoint responsável por adicionar um produto")
+	@ApiResponses(value= {
+				@ApiResponse(code=200, message = "Criou um produto"),
+				@ApiResponse(code=500, message = "Foi gerado um erro ao criar o produto"),
+				@ApiResponse(code=404, message = "URL pesquisada não corresponde "),
+				@ApiResponse(code=403, message = "Você não tem permissão")
+	})
 	@CrossOrigin(origins = "*")
 	@PostMapping
 	public Produto adicionar(@RequestBody Produto produto) {
@@ -44,6 +70,13 @@ public class ProdutoController {
 
 	}
 
+	@ApiOperation("Endpoint responsável por deletar um produto")
+	@ApiResponses(value= {
+			@ApiResponse(code=200, message = "Produto deletado com sucesso"),
+			@ApiResponse(code=500, message = "Foi gerado um erro ao deletar o produto"),
+			@ApiResponse(code=404, message = "URL pesquisada não corresponde "),
+			@ApiResponse(code=403, message = "Você não tem permissão")
+})
 	@CrossOrigin(origins = "*")
 	@DeleteMapping("/{id}")
 	public String deletar(@PathVariable Long id) {
@@ -51,6 +84,13 @@ public class ProdutoController {
 		return "Produto com id: " + id + " Deletado com sucesso!";
 	}
 
+	@ApiOperation("Endpoint responsável para atualizar um produto")
+	@ApiResponses(value= {
+			@ApiResponse(code=200, message = "Produto atualizado com sucesso"),
+			@ApiResponse(code=500, message = "Foi gerado um erro ao atualizar o produto"),
+			@ApiResponse(code=404, message = "URL pesquisada não corresponde "),
+			@ApiResponse(code=403, message = "Você não tem permissão")
+})
 	@CrossOrigin(origins = "*")
 	@PutMapping("/{id}")
 	public Produto atualizar(@PathVariable Long id, @RequestBody Produto produto) {
@@ -58,12 +98,17 @@ public class ProdutoController {
 
 	}
 
-
+	@ApiResponses(value= {
+			@ApiResponse(code=200, message = "Produto encontrado com sucesso"),
+			@ApiResponse(code=500, message = "Foi gerado um erro ao tentar encontrar o produto pelo codigo"),
+			@ApiResponse(code=404, message = "URL pesquisada não corresponde "),
+			@ApiResponse(code=403, message = "Você não tem permissão")
+})
+	@ApiOperation("Endpoint responsável por filtrar um produto pelo codigo")
 	@CrossOrigin(origins = "*")
 	@GetMapping("/codigo/{codigo}")
 	public List<Produto> obterPorCodigo(@PathVariable String codigo) {
 		return produtoService.obterPorCodigo(codigo);
 	}
-   
 
 }
