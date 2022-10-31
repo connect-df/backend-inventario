@@ -45,12 +45,12 @@ public void testObterporId() {
 		
 		List<Ambiente> resultado = localController.obterTodos();
 		
-//		if (resultado.isEmpty()) {
-//			assertFalse(true);
-//			
-//		} else {
-//			assertFalse(false);
-//			}
+	if (resultado.isEmpty()) {
+		assertFalse(true);
+		
+	} else {
+		assertFalse(false);
+		}
 		}
 @Test
 
