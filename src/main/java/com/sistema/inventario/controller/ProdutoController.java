@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sistema.inventario.model.Produto;
-
 import com.sistema.inventario.service.ProdutoService;
 
 import io.swagger.annotations.ApiOperation;
@@ -28,6 +27,7 @@ public class ProdutoController {
 
 	@Autowired
 	private ProdutoService produtoService;
+<<<<<<< HEAD
 	
 	@ApiOperation("Endpoint responsável por buscar todos os produtos")
 	@ApiResponses(value= {
@@ -36,6 +36,9 @@ public class ProdutoController {
 			@ApiResponse(code=404, message = "URL pesquisada não corresponde "),
 			@ApiResponse(code=403, message = "Você não tem permissão")
 })
+=======
+
+>>>>>>> 228c2d83914f37cab831c38d36caffc12360a793
 	@CrossOrigin(origins = "*")
 	@GetMapping
 	public List<Produto> obterTodos() {
@@ -97,6 +100,7 @@ public class ProdutoController {
 
 	}
 
+<<<<<<< HEAD
 	@ApiResponses(value= {
 			@ApiResponse(code=200, message = "Produto encontrado com sucesso"),
 			@ApiResponse(code=500, message = "Foi gerado um erro ao tentar encontrar o produto pelo codigo"),
@@ -104,11 +108,12 @@ public class ProdutoController {
 			@ApiResponse(code=403, message = "Você não tem permissão")
 })
 	@ApiOperation("Endpoint responsável por filtrar um produto pelo codigo")
+=======
+>>>>>>> 228c2d83914f37cab831c38d36caffc12360a793
 	@CrossOrigin(origins = "*")
 	@GetMapping("/codigo/{codigo}")
 	public List<Produto> obterPorCodigo(@PathVariable String codigo) {
 		return produtoService.obterPorCodigo(codigo);
 	}
-   
 
 }
