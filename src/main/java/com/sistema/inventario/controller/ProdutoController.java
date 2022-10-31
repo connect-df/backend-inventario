@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sistema.inventario.model.Produto;
-
 import com.sistema.inventario.service.ProdutoService;
 
 @RestController
@@ -24,7 +23,7 @@ public class ProdutoController {
 
 	@Autowired
 	private ProdutoService produtoService;
-	
+
 	@CrossOrigin(origins = "*")
 	@GetMapping
 	public List<Produto> obterTodos() {
@@ -58,12 +57,10 @@ public class ProdutoController {
 
 	}
 
-
 	@CrossOrigin(origins = "*")
 	@GetMapping("/codigo/{codigo}")
 	public List<Produto> obterPorCodigo(@PathVariable String codigo) {
 		return produtoService.obterPorCodigo(codigo);
 	}
-   
 
 }
