@@ -45,7 +45,7 @@ public class ProdutoService {
 
     }
     
-    public List<Produto> obterPorCodigo(String codigo) {
+    public Optional<Produto> obterPorCodigo(String codigo) {
 
         return produtoRepository.findByCodigo(codigo);
 

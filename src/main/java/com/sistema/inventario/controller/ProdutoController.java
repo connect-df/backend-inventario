@@ -107,7 +107,7 @@ public class ProdutoController {
 	@ApiOperation("Endpoint responsável por filtrar um produto pelo codigo")
 	@CrossOrigin(origins = "*")
 	@GetMapping("/codigo/{codigo}")
-	public List<Produto> obterPorCodigo(@PathVariable String codigo) {
+	public Optional<Produto>obterPorCodigo(@PathVariable String codigo) {
 		return produtoService.obterPorCodigo(codigo);
 	}
 
