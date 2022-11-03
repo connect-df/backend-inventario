@@ -17,81 +17,79 @@ import com.sistema.inventario.model.Ambiente;
 @SpringBootTest
 @WebAppConfiguration
 class LocalControllerTest {
-	
+
 	@Autowired
 	private LocalController localController;
 
-	//@Test
-	//void test() {
-		//fail("Not yet implemented");
-	//}
+	// @Test
+	// void test() {
+	// fail("Not yet implemented");
+	// }
 
-@Test
+	@Test
 
-public void testObterporId() {
+	public void testObterporId() {
 
-	Long id =  (long) 8;
-				
-	localController.obterporId(id);
-		
-  Optional<Ambiente> resultado = localController.obterporId(id);
-		
-	assertTrue(resultado.isEmpty());
-			}
-	
-	
-@Test	
+		Long id = (long) 8;
+
+		localController.obterporId(id);
+
+		Optional<Ambiente> resultado = localController.obterporId(id);
+
+		assertTrue(resultado.isEmpty());
+	}
+
+	@Test
 	public void testObterTodos() {
-		
+
 		List<Ambiente> resultado = localController.obterTodos();
-		
-	if (resultado.isEmpty()) {
-		assertFalse(true);
-		
-	} else {
-		assertFalse(false);
+
+		if (resultado.isEmpty()) {
+			assertFalse(true);
+
+		} else {
+			assertFalse(false);
 		}
-		}
-@Test
+	}
 
-    public void testDeletar() {
-	
-	Long id = (long) 17;
-	
-	localController.deletar(id);
-	
-	String resultado = localController.deletar(id);
-	
-	assertTrue(resultado.isEmpty());
-	
-}
+	@Test
+	public void testDeletar() {
 
-@Test
-    public void testAdicionar() {
+		Long id = (long) 29;
 
-	Ambiente ambiente = new Ambiente();
-	
-	ambiente.setAmbiente("Empresa");
-	
-	ambiente = localController.adicionar(ambiente);
+		localController.deletar(id);
 
-	assertEquals(true, ambiente.getId() == 18);
-}
+		Optional<Ambiente> resultado = localController.obterporId(id);
+
+		assertTrue(resultado.isEmpty());
+
+	}
+
+	@Test
+	public void testAdicionar() {
+
+		Ambiente ambiente = new Ambiente();
+
+		ambiente.setAmbiente("Empresa");
+
+		ambiente = localController.adicionar(ambiente);
+
+		assertEquals(true, ambiente.getId() == 18);
+	}
 
 //@Test
-   
-    public void testAtualizar() {
-	
-    Ambiente ambiente = new Ambiente();
-    
-    Long id = (long) 3;
-    
-    ambiente.setAmbiente("Empresa");
-    
-    localController.atualizar(id, ambiente);
-    
-    assertEquals(true, ambiente.getAmbiente() == "Ambiente");
-}
-    
-}
 
+	public void testAtualizar() {
+
+		Ambiente ambiente = new Ambiente();
+
+		Long id = (long) 3;
+
+		ambiente.setAmbiente("Empresa");
+
+		localController.atualizar(id, ambiente);
+
+		assertEquals(true, ambiente.getAmbiente() == "Ambiente");
+	}
+
+}
