@@ -50,4 +50,6 @@ public class LocalService {
         return localRepository.save(local);
 
     }
+    
+
 }

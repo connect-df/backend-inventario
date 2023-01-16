@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,14 +30,12 @@ public class PessoaController {
 	private PessoaService pessoaService;
 
 	@ApiOperation("Endpoint responsável por buscar todas as pessoas")
-	@CrossOrigin(origins = "*")
 	@GetMapping
 	public List<Pessoa> obterTodos() {
 		return pessoaService.obterTodos();
 	}
 
 	@ApiOperation("Endpoint responsável por buscar uma unica pessoa")
-	@CrossOrigin(origins = "*")
 	@GetMapping("/{id}")
 	public Optional<Pessoa> obterporId(@PathVariable Long id) {
 		return pessoaService.obterPorId(id);
@@ -50,7 +47,6 @@ public class PessoaController {
 				@ApiResponse(code=500, message = "Foi gerado um erro ao criar a pessoa")
 				
 	})
-	@CrossOrigin(origins = "*")
 	@PostMapping
 	public Pessoa adicionar(@RequestBody Pessoa pessoa) {
 		return pessoaService.adicionar(pessoa);
@@ -58,7 +54,6 @@ public class PessoaController {
 	}
 
 	@ApiOperation("Endpoint responsável por deletar uma pessoa")
-	@CrossOrigin(origins = "*")
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long id) {
@@ -66,7 +61,6 @@ public class PessoaController {
 	}
 
 	@ApiOperation("Endpoint responsável por atualizar uma pessoa")
-	@CrossOrigin(origins = "*")
 	@PutMapping("/{id}")
 	public Pessoa atualizar(@PathVariable Long id, @RequestBody Pessoa pessoa) {
 		return pessoaService.atualizar(id, pessoa);

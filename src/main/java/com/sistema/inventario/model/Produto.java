@@ -1,5 +1,5 @@
 package com.sistema.inventario.model;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -35,10 +36,10 @@ public class Produto {
 	@Column(nullable = false)
 	private String codigo;
 	
-	@JsonFormat(pattern = "dd-MM-yyyy")
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	@Column(name="dt_cadastro")
-	private Date dtCadastro;
+	private LocalDateTime dtCadastro;
 	
 	@Column(nullable = false)
 	private Double valor;
@@ -53,7 +54,7 @@ public class Produto {
 	private Pessoa pessoa;
 	
 	@ManyToOne
-	@JoinColumn(name = "ambiente_id", referencedColumnName = "id")
+	@JoinColumn(name = "ambiente_id")
 	private Ambiente ambiente;
 	
 	public String getDescricao() {
@@ -85,14 +86,20 @@ public class Produto {
 		this.codigo = codigo;
 	}
 	
-	
-	public Date getDtCadastro() {
+	public LocalDateTime getDtCadastro() {
 		return dtCadastro;
 	}
 
-	public void setDtCadastro(Date dtCadastro) {
+	public void setDtCadastro(LocalDateTime dtCadastro) {
 		this.dtCadastro = dtCadastro;
 	}
+
+	 // setar a data de cadastro da tarefa para cadastrar data automático assim que
+    // for salvo
+    @PrePersist
+    public void beforeSave() {
+        setDtCadastro(LocalDateTime.now());
+    }
 
 	public Double getValor() {
 		return valor;
@@ -131,6 +138,7 @@ public class Produto {
 	public void setAmbiente(Ambiente ambiente) {
 		this.ambiente = ambiente;
 	}
+	
 	
 	
 }

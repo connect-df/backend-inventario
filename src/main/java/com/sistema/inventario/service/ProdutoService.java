@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sistema.inventario.model.Ambiente;
 import com.sistema.inventario.model.Produto;
 import com.sistema.inventario.repository.ProdutoRepository;
 
@@ -38,17 +39,21 @@ public class ProdutoService {
     	produtoRepository.deleteById(id);
     }
 
-    public Produto atualizar(Long id, Produto produto) {
-   
-    	produto.setId(id);
-        return produtoRepository.save(produto);
-
-    }
+    public Produto PersistirProduto(Produto produto) {
+		return produtoRepository.saveAndFlush(produto);
+	}
     
     public Optional<Produto> obterPorCodigo(String codigo) {
 
         return produtoRepository.findByCodigo(codigo);
 
     }
+    
+    public List<Produto> obterPorAmbiente(Ambiente ambiente) {
+
+        return produtoRepository.findByAmbiente(ambiente);
+
+    }
+
     
 }

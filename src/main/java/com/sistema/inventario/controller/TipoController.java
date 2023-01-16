@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sistema.inventario.model.Tipo;
-
 import com.sistema.inventario.service.TipoService;
 
 import io.swagger.annotations.ApiOperation;
@@ -32,14 +30,12 @@ public class TipoController {
 	private TipoService tipoService;
 
 	@ApiOperation("Endpoint responsável por buscar todos os tipos")
-	@CrossOrigin(origins = "*")
 	@GetMapping
 	public List<Tipo> obterTodos() {
 		return tipoService.obterTodos();
 	}
 
 	@ApiOperation("Endpoint responsável por buscar um unico tipo")
-	@CrossOrigin(origins = "*")
 	@GetMapping("/{id}")
 	public Optional<Tipo> obterporId(@PathVariable Long id) {
 		return tipoService.obterPorId(id);
@@ -50,7 +46,6 @@ public class TipoController {
 				@ApiResponse(code=500, message = "Foi gerado um erro ao criar o tipo")
 				
 	})
-	@CrossOrigin(origins = "*")
 	@PostMapping
 	public Tipo adicionar(@RequestBody Tipo tipo) {
 		return tipoService.adicionar(tipo);
@@ -58,7 +53,6 @@ public class TipoController {
 	}
 
 	@ApiOperation("Endpoint responsável por deletar um tipo")
-	@CrossOrigin(origins = "*")
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long id) {
@@ -67,7 +61,6 @@ public class TipoController {
 
 
 	@ApiOperation("Endpoint responsável por atualizar um tipo")
-	@CrossOrigin(origins = "*")
 	@PutMapping("/{id}")
 	public Tipo atualizar(@PathVariable Long id, @RequestBody Tipo tipo) {
 		return tipoService.atualizar(id, tipo);

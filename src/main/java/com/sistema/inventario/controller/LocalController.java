@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,33 +30,25 @@ public class LocalController {
 	@Autowired
 	private LocalService localService;
 
-
-
-
 	@ApiOperation("Endpoint responsável por buscar todos os locais")
-	@CrossOrigin(origins = "*")
 
 	@GetMapping
 	public List<Ambiente> obterTodos() {
 		return localService.obterTodos();
 	}
 
-
 	@ApiOperation("Endpoint responsável por buscar um unico local")
-	@CrossOrigin(origins = "*")
 	@GetMapping("/{id}")
-public Optional<Ambiente> obterporId(@PathVariable Long id) {
+	public Optional<Ambiente> obterporId(@PathVariable Long id) {
 		return localService.obterPorId(id);
 	}
 
 	@ApiOperation("Endpoint responsável por adicionar um local")
-	@ApiResponses(value= {
-		@ApiResponse(code=200, message = "Criou um local"),
-		@ApiResponse(code=500, message = "Foi gerado um erro ao criar o local")
-		
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Criou um local"),
+			@ApiResponse(code = 500, message = "Foi gerado um erro ao criar o local")
+
 	})
-	
-	@CrossOrigin(origins = "*")
+
 	@PostMapping
 	public Ambiente adicionar(@RequestBody Ambiente local) {
 		return localService.adicionar(local);
@@ -65,7 +56,6 @@ public Optional<Ambiente> obterporId(@PathVariable Long id) {
 	}
 
 	@ApiOperation("Endpoint responsável por deletar um local")
-	@CrossOrigin(origins = "*")
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long id) {
@@ -73,10 +63,10 @@ public Optional<Ambiente> obterporId(@PathVariable Long id) {
 	}
 
 	@ApiOperation("Endpoint responsável para atualizar um produto")
-	@CrossOrigin(origins = "*")
 	@PutMapping("/{id}")
 	public Ambiente atualizar(@PathVariable Long id, @RequestBody Ambiente local) {
 		return localService.atualizar(id, local);
 
 	}
+	
 }

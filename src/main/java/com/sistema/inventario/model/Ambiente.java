@@ -16,9 +16,7 @@ public class Ambiente {
 	private Long id;
 
 	private String ambiente;
-	
-	
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -34,8 +32,5 @@ public class Ambiente {
 	public void setAmbiente(String ambiente) {
 		this.ambiente = ambiente;
 	}
-
-
-
 	
 }
