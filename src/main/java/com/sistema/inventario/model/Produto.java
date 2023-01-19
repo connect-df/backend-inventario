@@ -57,6 +57,14 @@ public class Produto {
 	@JoinColumn(name = "ambiente_id")
 	private Ambiente ambiente;
 	
+//	@Enumerated(EnumType.STRING)
+//	@Column(name = "propriedade")
+//	private Propriedade propriedade;
+	
+	@Column(nullable = false)
+	private String propriedade;
+	
+
 	public String getDescricao() {
 		return descricao;
 	}
@@ -139,6 +147,20 @@ public class Produto {
 		this.ambiente = ambiente;
 	}
 	
+//	public Propriedade getPropriedade() {
+//		return propriedade;
+//	}
+//
+//	public void setPropriedade(Propriedade propriedade) {
+//		this.propriedade = propriedade;
+//	}
 	
+	public String getPropriedade() {
+		return propriedade;
+	}
+
+	public void setPropriedade(String propriedade) {
+		this.propriedade = propriedade;
+	}
 	
 }

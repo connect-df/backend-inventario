@@ -91,7 +91,7 @@ public class ProdutoController {
 		produtoSalvo.get().setPessoa(produto.getPessoa());
 		produtoSalvo.get().setAmbiente(produto.getAmbiente());
 		produtoSalvo.get().setValor(produto.getValor());
-		
+
 		if (produtoSalvo.get().getId() == null) {
 			return ResponseEntity.notFound().build();
 		}
@@ -111,6 +111,12 @@ public class ProdutoController {
 		return produtoService.obterPorCodigo(codigo);
 	}
 
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Itens encontrado com sucesso"),
+			@ApiResponse(code = 500, message = "Foi gerado um erro ao tentar encontrar o item"),
+			@ApiResponse(code = 404, message = "URL pesquisada não corresponde "),
+			@ApiResponse(code = 403, message = "Você não tem permissão") })
+	@ApiOperation("Endpoint responsável por Listar todos os itens de um determinado ambiente "
+			+ "--> Passe o ID do ambiente como parâmetro")
 	@GetMapping("/ambiente/{ambiente}")
 	public List<Produto> obterProAmbiente(@PathVariable Ambiente ambiente) {
 		return produtoService.obterPorAmbiente(ambiente);
